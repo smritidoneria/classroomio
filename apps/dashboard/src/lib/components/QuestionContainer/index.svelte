@@ -12,11 +12,6 @@
   export let onPointsChange = () => {};
 
   let ref;
-  let pointsError = '';
-
-  $: pointsError = (!points || isNaN(points)) 
-    ? 'The points should be a number only'
-    : '';
 
   $: {
     if (ref && scrollToQuestion) {
@@ -50,16 +45,12 @@
         <p class="dark:text-white text-sm mr-2">
           {$t('course.navItem.lessons.exercises.new_exercise_modal.points')}:
         </p>
-        <div class="flex flex-row w-full gap-4">
-          <TextField
-            placeholder={$t('course.navItem.lessons.exercises.new_exercise_modal.points')}
-            bind:value={points}
-            type="number"
-            onChange={onPointsChange}
-            className="min-w-[100px]"
-          />
-          <p class="text-sm text-red-500 mt-1 whitespace-nowrap pt-2">{pointsError}</p>
-        </div>
+        <TextField
+          placeholder={$t('course.navItem.lessons.exercises.new_exercise_modal.points')}
+          bind:value={points}
+          type="number"
+          onChange={onPointsChange}
+        />
       </div>
 
       {#if onClose && !isTitle}
